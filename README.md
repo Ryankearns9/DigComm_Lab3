@@ -121,6 +121,7 @@ Finally, the decimation rate for this module is 20x. Because the input sample ra
 This block is responsible for translating changes in frequency into representations in complex numbers. It takes the conjugate of a time delayed sample X[n-1] and multiplies it by the current sample x[n]. This math can be seen below:
 
 $'(a[n]+ib[n])(a[n-1]-ib[n-1]'$
+
 $'a[n]a[n-1]-ia[n]b[n-1]+ib[n]a[n-1]+b[n]b[n-1]'$
 
 This gives the change between these two values. The output is then the angle of this complex number, ie the angular velocity between these two samples in radians. Then, the gain coefficent is multiplied to the resulting output to create a floating point value.
