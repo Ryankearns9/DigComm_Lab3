@@ -55,7 +55,7 @@ The input of this module is a floating point value while the output is a complex
 #### Mixer
 ![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/Mixer.PNG)
 
-The mixer module consists of the modulated signal being multipled by a cosine value. The resulting output frequency is $f_{cosine}+f_mod$. This gives the cosine value the property of being the carrier frequency. As the previous section details the modulation frequecy output being +/-$f_/delta$, we know that the final frequency will be given as $f_{cosine}+X[N]*f_/delta$.
+The mixer module consists of the modulated signal being multipled by a cosine value. The resulting output frequency is $f_{cosine}+f_{mod}$. This gives the cosine value the property of being the carrier frequency. As the previous section details the modulation frequecy output being +/- $f_\delta$, we know that the final frequency will be given as $f_{cosine}+X[N]*f_\delta$.
 
 ##### Signal Generator
 ![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/MixingSource.PNG)
