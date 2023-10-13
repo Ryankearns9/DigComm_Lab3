@@ -46,4 +46,4 @@ The repeat block will replicate an input N times. This creates an oversampling r
 #### Frequency Modulation
 ![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/FrequencyMod.PNG)
 
-The frequency modulation translates changes in input amplitude to changes in frequency. The equation which describes this translation is shown below $e^(2*\pi)$
+The frequency modulation translates changes in input amplitude to changes in frequency. The equation which describes this translation is shown below $e^{2*\pi*f_\delta/f_s}$
