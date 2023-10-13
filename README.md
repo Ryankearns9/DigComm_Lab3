@@ -46,7 +46,7 @@ The repeat block will replicate an input N times. This creates an oversampling r
 #### Frequency Modulation
 ![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/FrequencyMod.PNG)
 
-The frequency modulation translates changes in input amplitude to changes in frequency. The equation which describes this translation is shown below $e^{j2\pi*f_\delta/f_s}$ $\sum{x[n]}$ where $f_\delta$ is the frequency deviation, $f_s$ is the sample rate and x[n] is the amplitude of the Nth sample as per the documentation (https://wiki.gnuradio.org/index.php/Frequency_Mod).
+The frequency modulation translates changes in input amplitude to changes in frequency. The equation which describes this translation is shown below $e^{j2\pi*f_\delta/f_s * {\sum{x[n]}}}$ where $f_\delta$ is the frequency deviation, $f_s$ is the sample rate and x[n] is the amplitude of the Nth sample as per the documentation (https://wiki.gnuradio.org/index.php/Frequency_Mod).
 
 This module accepts a single argument, the frequency sensitivity which is defined by $2\pi*f_\delta/f_s$. This value is fed by the GUI Range Variable "freq_deviation" and ranges between 1kHz and 200kHz. As shown in the modulation plots below, this value is dictating how much frequency will vary when amplitude changes. A deviation of 200kHz means that a -1 will be represented by a tone 200kHz below the carrier while a +1 will be represented by a tone 200kHz above the carrier. Larger deviation results in less bit error but also comes results in a higher required bandwidth. An engineer must trade how much bandwidth is required with the the amount of allowable bit error.
 
@@ -55,7 +55,7 @@ The input of this module is a floating point value while the output is a complex
 #### Mixer
 ![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/Mixer.PNG)
 
-The mixer module consists of the modulated signal being multipled by a cosine value. The resulting output frequency is $f_cosine+f_mod$. This gives the cosine value the property of being the carrier frequency. As the previous section details the modulation frequecy output being +/-$f_delta$, we know that the final frequency will be given as $f_cosine+X[N]*f_delta$.
+The mixer module consists of the modulated signal being multipled by a cosine value. The resulting output frequency is $f_{cosine}+f_mod$. This gives the cosine value the property of being the carrier frequency. As the previous section details the modulation frequecy output being +/-$f_delta$, we know that the final frequency will be given as $f_cosine+X[N]*f_delta$.
 
 ##### Signal Generator
 ![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/MixingSource.PNG)
