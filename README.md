@@ -41,9 +41,43 @@ The vector source is the symbol list used for the FSK signal. This is a randomly
 #### Repeat Block
 ![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/Repeat.PNG)
 
-The repeat block will replicate an input N times. This creates an oversampling ratio of N such that there are N samples per symbol. In this case, the oversampling ratio was chosen to be 600. This ratio was chosen to allow for a clean looking time-domain plot.
+The repeat block will replicate an input N times. This creates an oversampling ratio of N such that there are N samples per symbol. In this case, the oversampling ratio was chosen to be 600. This ratio was chosen to allow for a clean looking time-domain plot and also allows for easier representation without overmodulation.
 
 #### Frequency Modulation
 ![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/FrequencyMod.PNG)
 
-The frequency modulation translates changes in input amplitude to changes in frequency. The equation which describes this translation is shown below $e^{j2\pif_\delta/f_s*\sum{x[n]}}$
+The frequency modulation translates changes in input amplitude to changes in frequency. The equation which describes this translation is shown below $e^{j2\pi*f_\delta/f_s*\sum{x[n]}}$ where $f_\delta$ is the frequency deviation, $f_s$ is the sample rate and x[n] is the amplitude of the Nth sample as per the documentation (https://wiki.gnuradio.org/index.php/Frequency_Mod).
+
+This module accepts a single argument, the frequency sensitivity which is defined by $2\pi*f_\delta/f_s$. This value is fed by the GUI Range Variable "freq_deviation" and ranges between 1kHz and 200kHz. As shown in the modulation plots below, this value is dictating how much frequency will vary when amplitude changes. A deviation of 200kHz means that a -1 will be represented by a tone 200kHz below the carrier while a +1 will be represented by a tone 200kHz above the carrier. Larger deviation results in less bit error but also comes results in a higher required bandwidth. An engineer must trade how much bandwidth is required with the the amount of allowable bit error.
+
+The input of this module is a floating point value while the output is a complex value.
+
+#### Mixer
+![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/Mixer.PNG)
+
+The mixer module consists of the modulated signal being multipled by a cosine value. The resulting output frequency is $f_cosine+f_mod$. This gives the cosine value the property of being the carrier frequency. As the previous section details the modulation frequecy output being +/-$f_delta$, we know that the final frequency will be given as $f_cosine+X[N]*f_delta$.
+
+##### Signal Generator
+![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/MixingSource.PNG)
+
+The cosine tone generated for the mixer is from the signal generator pictured above. It produces a cosine tone of a given frequency. In this case, it generates a 315MHz sampled at 8MHz. Given that the carrier frequency is higher than our sample rate, this results in the signal aliasing to 3MHz due to the nature of complex sampling.
+
+##### Throttle
+![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/Throttle.PNG)
+
+The throttle controls how fast a computer can copy memory from one location to another. Given that there is no hardware input controling timing, this module ensures the computer reduces its processing speed to the rate defined by the throttle. In this case, it is 8MHz.
+
+### Modulation GUI
+The below two sections detail the modulation output with 10kHz deviation and 200kHz deviation. This helps visualize how frequency deviation affects the output spectrum.
+
+#### High Deviation
+![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/ModulatedOutput_HighDeviation.PNG)
+
+The above figure shows the modulation with 200kHz deviation. As shown on the waterfall, there are two distinct tones present at 3.2MHz and 2.8MHz. These are the expected locations gives in the Mixer section.
+
+#### Low Deviation
+![alt text](https://github.com/Ryankearns9/DigComm_Lab3/blob/main/img/ModulatedOutput_LowDeviation.PNG)
+
+The above figure shows the modulation with 10kHz deviation. As shown on the waterfall and FFT, these tones are nearly impossible to distinguish due to their close proximity in frequency. The bit error rate from this modulation would likely be significantly higher than the previous example.
+
+

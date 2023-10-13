@@ -187,7 +187,7 @@ class Lab3_FSK(gr.top_block, Qt.QWidget):
             window.WIN_BLACKMAN_hARRIS, #wintype
             0, #fc
             samp_rate, #bw
-            "", #name
+            "Baseband Modulated Data", #name
             1,
             None # parent
         )

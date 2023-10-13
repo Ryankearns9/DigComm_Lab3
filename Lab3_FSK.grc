@@ -436,7 +436,7 @@ blocks:
     legend: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
-    name: '""'
+    name: '"Baseband Modulated Data"'
     nconnections: '1'
     norm_window: 'False'
     showports: 'False'
@@ -658,7 +658,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [568, 180.0]
+    coordinate: [568, 140.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_2
